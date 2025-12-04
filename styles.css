@@ -48,8 +48,6 @@
   display: block;
 }
 
-
-
 html {
   font-size: 62.5%;
   overflow-x: hidden;
@@ -564,6 +562,15 @@ span {
   .projects-container {
     grid-template-columns: 1fr;
   }
+
+   .footer {
+    flex-direction: column-reverse;
+  }
+
+  .footer p {
+    text-align: center;
+    margin-top: 2rem;
+  }
 }
 
 @media (max-width: 450px) {
@@ -573,6 +580,15 @@ span {
 
   .contact form .input-box input {
     width: 100%;
+  }
+
+   .footer {
+    flex-direction: column-reverse;
+  }
+
+  .footer p {
+    text-align: center;
+    margin-top: 2rem;
   }
 }
 
