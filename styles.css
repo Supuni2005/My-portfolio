@@ -26,12 +26,12 @@ html {
 body {
   background: var(--bg-color);
   color: var(--text-color);
+  overflow: hidden;
 }
 
 section {
   min-height: 100vh;
   padding: 10rem 9% 2rem;
-
 }
 
 .header {
@@ -191,47 +191,108 @@ span {
   margin: 2rem 0 3rem;
 }
 
-.skills h2 {
-  margin-bottom: 5rem;
+/* ------------------------------
+   SKILLS (REPLACED)
+   New two-column progress bar layout — matches Option D
+--------------------------------*/
+.skills {
+  /* keep section spacing consistent */
+  padding: 10rem 9% 2rem;
+  background: transparent; /* keeps the page background, looks integrated */
 }
 
-.skills-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.skills-container .skills-box {
-  flex: 1 1 30rem;
-  background: var(--second-bg-color);
-  border-radius: 2rem;
+.skills .heading {
+  margin-bottom: 4rem;
   text-align: center;
-  border: .2rem solid var(--bg-color);
-  padding: 3rem 2rem 4rem;
-  transition: .3s ease;
 }
 
-.skills-container .skills-box:hover {
-  border-color: var(--main-color);
-  transform: scale(1.02);
+/* layout */
+.skills-row {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.skills-box i {
-  font-size: 7rem;
-  color: var(--main-color);
+/* two columns */
+.skills-column {
+  flex: 1 1 44%;
+  min-width: 280px;
+  max-width: 540px;
 }
 
-.skills-box h3 {
-  font-size: 2.6rem;
+/* each skill row */
+.skill {
+  margin-bottom: 2rem;
 }
 
-.skills-box p {
+/* label + percent */
+.skill p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
   font-size: 1.6rem;
-  margin: 1rem 0 3rem;
+  margin-bottom: .6rem;
+  color: var(--text-color);
 }
 
+/* percent label */
+.skill .percent {
+  font-weight: 700;
+  min-width: 4.5rem;
+  text-align: right;
+}
+
+/* track */
+.bar {
+  position: relative;  /* 🔥 FIXES overflow */
+  width: 100%;
+  height: 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* animated fill (width set by JS from data-percent) */
+.fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 10px;
+  transition: width 1200ms cubic-bezier(.2,.9,.2,1);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35) inset;
+}
+
+/* subtle bright edge like screenshot */
+.bar::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4%;
+  background: rgba(255,255,255,0.12);
+  border-radius: 0 10px 10px 0;
+  transform: translateX(30%);
+  opacity: 0.9;
+}
+
+/* fallback fill color if data-color missing */
+.fill { background: #283444; }
+
+/* give some example color classes (not required) */
+.fill.html { background: #1b2735; }
+.fill.css { background: #ffcc00; }
+.fill.react { background: #e63c46; }
+
+/* remove old skills-container boxes rules (they remain below but won't apply) */
+
+/* ------------------------------
+   PROJECTS (unchanged)
+--------------------------------*/
 .projects {
   background: var(--second-bg-color);
 }
@@ -480,6 +541,16 @@ span {
   .projects-container {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* responsive for new skills layout */
+  .skills-row {
+    gap: 2rem;
+  }
+
+  .skills-column {
+    flex: 1 1 100%;
+    width: 100%;
+  }
 }
 
 @media (max-width: 617px) {
@@ -516,3 +587,22 @@ span {
     margin-top: 2rem;
   }
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color); /* match your website background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #08c7d6; /* slightly darker hover color */
+}
+

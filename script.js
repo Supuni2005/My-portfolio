@@ -1,3 +1,4 @@
+// menu toggle (keeps original behavior)
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
@@ -6,6 +7,7 @@ menuIcon.onclick = () => {
   navbar.classList.toggle('active');
 };
 
+// scroll spy + sticky header (keeps original logic)
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 
@@ -22,9 +24,8 @@ window.onscroll = () => {
         link.classList.remove('active');
       });
 
-      document
-        .querySelector("header nav a[href*='" + id + "']")
-        .classList.add('active');
+      const anchor = document.querySelector("header nav a[href*='" + id + "']");
+      if (anchor) anchor.classList.add('active');
     }
   });
 
@@ -36,14 +37,43 @@ window.onscroll = () => {
   navbar.classList.remove('active');
 };
 
-ScrollReveal({ 
-  reset: true ,
-  distance: '80px',
-  duration: 2000,
-  delay: 200
+// ScrollReveal (unchanged)
+if (typeof ScrollReveal !== 'undefined') {
+  ScrollReveal({ 
+    reset: true ,
+    distance: '80px',
+    duration: 2000,
+    delay: 200
+  });
+
+  ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
+  ScrollReveal().reveal('.home-img, .projects-container, .projects-box, .contact form', { origin: 'bottom' });
+  ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
+  ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
+}
+
+/* ===== Skills bars animation using IntersectionObserver ===== */
+document.addEventListener('DOMContentLoaded', function () {
+  const skillsSection = document.querySelector('#skills');
+  const fills = document.querySelectorAll('.fill');
+
+  if (!skillsSection || fills.length === 0) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fills.forEach(fill => {
+          const percent = fill.getAttribute('data-percent') || '0';
+          const color = fill.getAttribute('data-color') || '#283444';
+          fill.style.background = color;
+          // trigger the transition
+          fill.style.width = percent + '%';
+        });
+        obs.unobserve(entry.target); // animate once
+      }
+    });
+  }, { threshold: 0.25 });
+
+  observer.observe(skillsSection);
 });
 
-ScrollReveal().reveal('.home-content, .heading', { origin: 'top' });
-ScrollReveal().reveal('.home-img, .skills-container, .projects-box, .contact form', { origin: 'bottom' });
-ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'left' });
-ScrollReveal().reveal('.home-content p, .about-content', { origin: 'right' });
