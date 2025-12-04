@@ -36,6 +36,19 @@
   right: 30px;
 }
 
+.img-light {
+  display: none;
+}
+
+.light-theme .img-dark {
+  display: none;
+}
+
+.light-theme .img-light {
+  display: block;
+}
+
+
 
 html {
   font-size: 62.5%;
