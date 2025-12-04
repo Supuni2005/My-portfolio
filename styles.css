@@ -191,14 +191,9 @@ span {
   margin: 2rem 0 3rem;
 }
 
-/* ------------------------------
-   SKILLS (REPLACED)
-   New two-column progress bar layout — matches Option D
---------------------------------*/
 .skills {
-  /* keep section spacing consistent */
   padding: 10rem 9% 2rem;
-  background: transparent; /* keeps the page background, looks integrated */
+  background: transparent; 
 }
 
 .skills .heading {
@@ -206,7 +201,6 @@ span {
   text-align: center;
 }
 
-/* layout */
 .skills-row {
   display: flex;
   gap: 4rem;
@@ -215,19 +209,16 @@ span {
   align-items: flex-start;
 }
 
-/* two columns */
 .skills-column {
   flex: 1 1 44%;
   min-width: 280px;
   max-width: 540px;
 }
 
-/* each skill row */
 .skill {
   margin-bottom: 2rem;
 }
 
-/* label + percent */
 .skill p {
   display: flex;
   justify-content: space-between;
@@ -238,16 +229,14 @@ span {
   color: var(--text-color);
 }
 
-/* percent label */
 .skill .percent {
   font-weight: 700;
   min-width: 4.5rem;
   text-align: right;
 }
 
-/* track */
 .bar {
-  position: relative;  /* 🔥 FIXES overflow */
+  position: relative;  
   width: 100%;
   height: 12px;
   background: rgba(255,255,255,0.06);
@@ -256,7 +245,6 @@ span {
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
 }
 
-/* animated fill (width set by JS from data-percent) */
 .fill {
   display: block;
   height: 100%;
@@ -266,7 +254,6 @@ span {
   box-shadow: 0 6px 18px rgba(0,0,0,0.35) inset;
 }
 
-/* subtle bright edge like screenshot */
 .bar::after {
   content: "";
   position: absolute;
@@ -280,19 +267,8 @@ span {
   opacity: 0.9;
 }
 
-/* fallback fill color if data-color missing */
 .fill { background: #283444; }
 
-/* give some example color classes (not required) */
-.fill.html { background: #1b2735; }
-.fill.css { background: #ffcc00; }
-.fill.react { background: #e63c46; }
-
-/* remove old skills-container boxes rules (they remain below but won't apply) */
-
-/* ------------------------------
-   PROJECTS (unchanged)
---------------------------------*/
 .projects {
   background: var(--second-bg-color);
 }
@@ -542,7 +518,6 @@ span {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* responsive for new skills layout */
   .skills-row {
     gap: 2rem;
   }
@@ -594,7 +569,7 @@ span {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-color); /* match your website background */
+  background: var(--bg-color); 
 }
 
 ::-webkit-scrollbar-thumb {
@@ -603,6 +578,6 @@ span {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #08c7d6; /* slightly darker hover color */
+  background: #08c7d6; 
 }
 
