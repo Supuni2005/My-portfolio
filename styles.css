@@ -13,10 +13,29 @@
 
 :root {
   --bg-color: #1f242d;
+  --text-color: #ffffff;
+  --main-color: #00eaff;
   --second-bg-color: #323946;
-  --text-color: #fff;
-  --main-color: #0ef;
 }
+
+.light-theme {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --main-color: #00eaff;
+  --second-bg-color: #f2f2f2;
+}
+
+.theme-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--accent-color);
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
 
 html {
   font-size: 62.5%;

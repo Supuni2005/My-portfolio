@@ -77,3 +77,33 @@ document.addEventListener('DOMContentLoaded', function () {
   observer.observe(skillsSection);
 });
 
+const toggleBtn = document.getElementById("theme-toggle");
+const icon = toggleBtn.querySelector("i");
+
+// Load saved theme
+if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light-theme");
+    icon.className = "bx bxs-moon";
+    icon.style.color = "#000000";  // Sun icon
+} else {
+    icon.className = "bx bxs-sun bx-flip-vertical";
+    icon.style.color = "#f5f1f1";
+}
+
+toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light-theme");
+
+    if (document.body.classList.contains("light-theme")) {
+        // Light mode → show sun
+        icon.className = "bx bxs-moon";
+    icon.style.color = "#000000"; 
+        localStorage.setItem("theme", "light");
+    } else {
+        // Dark mode → show moon
+        icon.className = "bx bxs-sun bx-flip-vertical";
+    icon.style.color = "#f5f1f1";
+        localStorage.setItem("theme", "dark");
+    }
+});
+
+
