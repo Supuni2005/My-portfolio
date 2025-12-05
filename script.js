@@ -1,4 +1,4 @@
-// menu toggle (keeps original behavior)
+// menu toggle
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
@@ -7,7 +7,7 @@ menuIcon.onclick = () => {
   navbar.classList.toggle('active');
 };
 
-// scroll spy + sticky header (keeps original logic)
+// scroll spy + sticky header
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 
@@ -37,7 +37,7 @@ window.onscroll = () => {
   navbar.classList.remove('active');
 };
 
-// ScrollReveal (unchanged)
+// ScrollReveal
 if (typeof ScrollReveal !== 'undefined') {
   ScrollReveal({ 
     reset: true ,
@@ -84,7 +84,7 @@ const icon = toggleBtn.querySelector("i");
 if (localStorage.getItem("theme") === "light") {
     document.body.classList.add("light-theme");
     icon.className = "bx bxs-moon";
-    icon.style.color = "#000000";  // Sun icon
+    icon.style.color = "#000000"; 
 } else {
     icon.className = "bx bxs-sun bx-flip-vertical";
     icon.style.color = "#f5f1f1";
@@ -94,12 +94,12 @@ toggleBtn.addEventListener("click", () => {
     document.body.classList.toggle("light-theme");
 
     if (document.body.classList.contains("light-theme")) {
-        // Light mode → show sun
+      
         icon.className = "bx bxs-moon";
-    icon.style.color = "#000000"; 
+    icon.style.color = "#000000";
         localStorage.setItem("theme", "light");
     } else {
-        // Dark mode → show moon
+        
         icon.className = "bx bxs-sun bx-flip-vertical";
     icon.style.color = "#f5f1f1";
         localStorage.setItem("theme", "dark");
